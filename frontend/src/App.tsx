@@ -1,6 +1,6 @@
-// App.tsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LoadingFallback from './components/LoadingFallback'
 
 // Sample route configuration
 const routes = [
@@ -8,12 +8,12 @@ const routes = [
   { path: '/about', component: React.lazy(() => import('./pages/About')) },
   { path: '/reader', component: React.lazy(() => import('./pages/Reader')) },
   { path: '/get-started', component: React.lazy(() => import('./pages/GetStarted')) },
-];
+]
 
 function App() {
   return (
     <Router>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<LoadingFallback />}>
         <Routes>
           {routes.map(({ path, component: Component }, index) => (
             <Route key={index} path={path} element={<Component />} />
@@ -21,7 +21,8 @@ function App() {
         </Routes>
       </React.Suspense>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
+
