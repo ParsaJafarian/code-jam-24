@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const HomeText = () => {
   return (
     <div className="absolute inset-y-0 left-0 flex flex-col justify-center text-white z-20 px-4 sm:px-8 md:px-16 max-w-full md:max-w-2xl pt-20">
@@ -11,9 +13,11 @@ const HomeText = () => {
         </p>
       </div>
       <div className="flex gap-2 sm:gap-4">
-        <button className="bg-[#ffff00] hover:bg-[#cccc00] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-colors">
-          Get Started
-        </button>
+        <Link to="/reader">
+          <button className="bg-[#ffff00] hover:bg-[#cccc00] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-colors">
+            Get Started
+          </button>
+        </Link>
       </div>
     </div>
   );
