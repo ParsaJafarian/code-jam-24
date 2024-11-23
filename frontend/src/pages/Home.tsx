@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "../components/loader";
 import Piano from "@/models/Piano";
@@ -8,7 +8,7 @@ import HomeText from "@/components/HomeText";
 const Home = () => {
   const [pianoScale, setPianoScale] = useState([0, 0, 0]);
   const [pianoPosition, setPianoPosition] = useState([0, 0, 0]);
-  const [pianoRotation, setPianoRotation] = useState([0, 0, 0]);
+  const [pianoRotation] = useState([0, 0, 0]);
 
   const adjustModelForScreenSize = () => {
     if (window.innerWidth < 768) {
@@ -34,9 +34,9 @@ const Home = () => {
   return (
     <div className="w-full h-screen relative">
       <HomeText />
-      <section className="w-full h-screen relative bg-red-500">
+      <section className="w-full relative bg-red-500">
         <Navbar />
-
+        <HomeText />
         <Canvas
           className="w-full min-h-screen bg-transparent absolute top-0 left-0"
           camera={{ near: 0.1, far: 1000 }}
