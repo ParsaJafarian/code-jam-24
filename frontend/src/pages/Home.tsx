@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import Loader from "../components/loader";
 import Piano from "@/models/Piano";
-import { Navbar } from "@/components/Nabvar";
+import { Navbar } from "@/components/Navbar";
 import HomeText from "@/components/HomeText";
 
 const Home = () => {
