@@ -14,17 +14,8 @@ export function Navbar() {
                     </a>
                 </div>
                 <nav className="hidden md:flex gap-8 flex-grow justify-end">
-                    <a className="text-sm font-medium text-white hover:text-red-200 hover:underline underline-offset-4" href="#features">
-                        Features
-                    </a>
-                    <a className="text-sm font-medium text-white hover:text-red-200 hover:underline underline-offset-4" href="#pricing">
-                        Pricing
-                    </a>
-                    <a className="text-sm font-medium text-white hover:text-red-200 hover:underline underline-offset-4" href="#about">
-                        About
-                    </a>
-                    <a className="text-sm font-medium text-white hover:text-red-200 hover:underline underline-offset-4" href="#contact">
-                        Contact
+                    <a className="text-sm font-medium text-white hover:text-red-200 hover:underline underline-offset-4" href="/get-started">
+                        Get Started
                     </a>
                 </nav>
                 <div className="flex-shrink-0">

@@ -38,12 +38,12 @@ const Home = () => {
         <Navbar />
 
         <Canvas
-          className="w-full min-h-screen bg-transparent absolute top-0 left-0"
+          className="w-full min-h-screen bg-transparent relative top-0 left-0"
           camera={{ near: 0.1, far: 1000 }}
         >
           <Suspense fallback={<Loader />}>
-            <directionalLight intensity={3} position={[1, 1, 1]} />
-            <ambientLight intensity={1} />
+            <directionalLight intensity={3} position={[2, 2, 2]} />
+            <ambientLight intensity={3} />
             <hemisphereLight
               color="#b1e1ff"
               groundColor="#000000"

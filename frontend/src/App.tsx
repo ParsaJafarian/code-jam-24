@@ -7,6 +7,7 @@ const routes = [
   { path: '/', component: React.lazy(() => import('./pages/Home')) },
   { path: '/about', component: React.lazy(() => import('./pages/About')) },
   { path: '/reader', component: React.lazy(() => import('./pages/Reader')) },
+  { path: '/get-started', component: React.lazy(() => import('./pages/GetStarted')) },
 ];
 
 function App() {
