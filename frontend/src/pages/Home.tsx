@@ -1,10 +1,9 @@
-import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
 import Loader from "../components/loader";
 import Piano from "@/models/Piano";
 import { Navbar } from "@/components/Nabvar";
 import HomeText from "@/components/HomeText";
-import MusicNotes from "@/components/MusicNotes";
 
 const Home = () => {
   const adjustModelForScreenSize = () => {

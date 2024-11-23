@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "ES2022",
     "lib": [
@@ -10,9 +9,10 @@
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": false,
+    "noEmit": true,
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
