@@ -7,10 +7,7 @@ const HomeText = () => {
       </h1>
       <div className="text-base sm:text-lg text-red-100 text-left mb-8 space-y-4">
         <p>
-          Experience the magic of turning sound into sheet music with Museify. Our cutting-edge AI technology listens to any audio and effortlessly transcribes it into accurate, playable piano sheets.
-        </p>
-        <p>
-          Whether you're a budding composer capturing spontaneous melodies or a pianist eager to learn new songs, Museify bridges the gap between inspiration and performance. Transform your favorite tunes into tangible music sheets and bring your music to life—simply, quickly, and beautifully.
+          <span className="text-[#000000]">Experience the magic of turning sound into sheet music with Museify.</span> Whether you're a budding composer capturing spontaneous melodies or a pianist eager to learn new songs, Museify bridges the gap between inspiration and performance. Transform your favorite tunes into tangible music sheets and bring your music to life—<span className="text-[#ffff00]">simply, quickly, and beautifully.</span>
         </p>
       </div>
       <div className="flex gap-2 sm:gap-4">
