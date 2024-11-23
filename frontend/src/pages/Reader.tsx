@@ -1,5 +1,5 @@
 import PDFViewer from '../components/PDFViewer'
-import { Navbar } from '@/components/Nabvar'
+import { Navbar } from '@/components/Navbar'
 
 export default function Reader() {
     return (
