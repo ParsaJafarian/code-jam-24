@@ -14,8 +14,8 @@ const Home = () => {
     if (window.innerWidth < 768) {
       setPianoScale([1.0, 1.0, 1.0]);
       setPianoPosition([20, 1.5, -43]);
-    } else if (window.innerWidth < 1370) {
-      setPianoScale([1.8, 1.8, 1.8]);
+    } else if (window.innerWidth < 1368) {
+      setPianoScale([1.9, 1.9, 1.9]);
       setPianoPosition([25, 1.5, -43]);
     } else {
       setPianoScale([2.5, 2.5, 2.5]);
