@@ -12,9 +12,6 @@ const HomeText = () => {
         <button className="bg-[#ffff00] hover:bg-[#cccc00] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-colors">
           Get Started
         </button>
-        <button className="border-2 border-[#ffff00] hover:bg-[#ffff00]/10 text-[#ffff00] px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-colors">
-          Learn More
-        </button>
       </div>
     </div>
   );
