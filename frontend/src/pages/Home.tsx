@@ -13,7 +13,7 @@ const Home = () => {
   const adjustModelForScreenSize = () => {
     if (window.innerWidth < 768) {
       setPianoScale([1.0, 1.0, 1.0]);
-      setPianoPosition([30, 1.5, -43]);
+      setPianoPosition([20, 1.5, -43]);
     } else if (window.innerWidth < 1370) {
       setPianoScale([1.8, 1.8, 1.8]);
       setPianoPosition([25, 1.5, -43]);
