@@ -25,6 +25,7 @@ export default function TranscriptionPage() {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [midiData, setMidiData] = useState<Midi | null>(null);
   const [activeNotes, setActiveNotes] = useState<number[]>([]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -108,8 +109,18 @@ export default function TranscriptionPage() {
     }
   };
 
+  const stopMidi = () => {
+    Tone.Transport.stop();
+    Tone.Transport.cancel();
+    Tone.getDestination().dispose(); // This will stop all ongoing sounds
+    setActiveNotes([]);
+    setIsPlaying(false);
+  };
+
   const playMidi = () => {
-    if (!midiData) return;
+    if (!midiData || isPlaying) return;
+
+    setIsPlaying(true);
 
     const synth = new Tone.PolySynth().toDestination();
     const now = Tone.now();
@@ -253,9 +264,18 @@ export default function TranscriptionPage() {
                 </div>
               </form>
               {midiData && (
-                <Button onClick={playMidi} className="mt-4">
-                  Play MIDI
-                </Button>
+                <div className="mt-4 flex space-x-2">
+                  <Button onClick={playMidi} disabled={isPlaying}>
+                    Play MIDI
+                  </Button>
+                  <Button
+                    onClick={stopMidi}
+                    disabled={!isPlaying}
+                    variant="destructive"
+                  >
+                    Stop
+                  </Button>
+                </div>
               )}
             </CardContent>
           </Card>
@@ -263,7 +283,7 @@ export default function TranscriptionPage() {
         <Piano
           noteRange={{ first: firstNote, last: lastNote }}
           playNote={(midiNumber: any) => {
-            // Play a single note when a key is pressed
+            if (isPlaying) return; // Prevent manual playing during MIDI playback
             const synth = new Tone.Synth().toDestination();
             synth.triggerAttackRelease(
               Tone.Frequency(midiNumber, "midi").toFrequency(),
@@ -275,7 +295,7 @@ export default function TranscriptionPage() {
           }}
           width={1000}
           keyboardShortcuts={keyboardShortcuts}
-          activeNotes={activeNotes}
+          activeNotes={isPlaying ? activeNotes : []}
         />
       </main>
     </div>
