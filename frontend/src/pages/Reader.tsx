@@ -280,23 +280,35 @@ export default function TranscriptionPage() {
             </CardContent>
           </Card>
         </div>
-        <Piano
-          noteRange={{ first: firstNote, last: lastNote }}
-          playNote={(midiNumber: any) => {
-            if (isPlaying) return; // Prevent manual playing during MIDI playback
-            const synth = new Tone.Synth().toDestination();
-            synth.triggerAttackRelease(
-              Tone.Frequency(midiNumber, "midi").toFrequency(),
-              "8n"
-            );
-          }}
-          stopNote={() => {
-            // Optional: implement note stop logic if needed
-          }}
-          width={1000}
-          keyboardShortcuts={keyboardShortcuts}
-          activeNotes={isPlaying ? activeNotes : []}
-        />
+        <Card>
+          <Piano
+            noteRange={{ first: firstNote, last: lastNote }}
+            playNote={(midiNumber: any) => {
+              if (isPlaying) return; // Prevent manual playing during MIDI playback
+              const synth = new Tone.Synth().toDestination();
+              synth.triggerAttackRelease(
+                Tone.Frequency(midiNumber, "midi").toFrequency(),
+                "8n"
+              );
+            }}
+            stopNote={() => {
+              // Optional: implement note stop logic if needed
+            }}
+            width={1000}
+            keyboardShortcuts={keyboardShortcuts}
+            activeNotes={isPlaying ? activeNotes : []}
+          />
+          {/* Transcription Result */}
+          {pdfUrl && (
+            <div className="mt-6 space-y-4">
+              <iframe
+                src={pdfUrl}
+                className="w-full h-[600px] border rounded-lg"
+                title="PDF Viewer"
+              />
+            </div>
+          )}
+        </Card>
       </main>
     </div>
   );
