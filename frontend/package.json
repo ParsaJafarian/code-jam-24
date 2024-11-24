@@ -15,12 +15,14 @@
     "@react-spring/three": "^9.7.5",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
+    "@tonejs/midi": "^2.0.28",
     "@types/three": "^0.170.0",
     "@use-gesture/react": "^10.3.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dexie": "^4.0.10",
     "esbuild": "^0.24.0",
+    "jszip": "^3.10.1",
     "lucide-react": "^0.460.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
@@ -29,7 +31,8 @@
     "react-router-dom": "^7.0.1",
     "rollup": "^4.27.3",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tone": "^15.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

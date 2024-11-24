@@ -1,0 +1,14 @@
+MuseScore 3 (put the path in the code "server.py")
+SoX (put in path variable)
+ffmpeg
+
+download this and extract it in backend folder, so you should have a maestro_checkpoint folder in here:
+https://storage.googleapis.com/magentadata/models/onsets_frames_transcription/maestro_checkpoint.zip
+
+cmd to start the server:
+
+backend:
+uvicorn server:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 5
+
+frontend:
+npm run dev
