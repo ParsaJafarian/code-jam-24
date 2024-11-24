@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Navbar } from "@/components/Navbar";
+import MusicNotes from "@/components/MusicNotes";
 
 const API_URL = "http://localhost:8000";
 
@@ -91,7 +92,7 @@ export default function TranscriptionPage() {
   };
 
   return (
-    <div>
+    <div className="w-full h-screen relative">
       <Navbar />
 
       <main className="min-h-screen bg-red-500 flex items-start justify-center pt-20">
@@ -226,6 +227,7 @@ export default function TranscriptionPage() {
           </Card>
         </div>
       </main>
+      <MusicNotes />
     </div>
   );
 }
