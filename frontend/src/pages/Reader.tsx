@@ -9,7 +9,8 @@ import {
   Trash2,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
+import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
+import "react-piano/dist/styles.css";
 const API_URL = "http://localhost:8000";
 
 export default function TranscriptionPage() {
@@ -88,7 +89,13 @@ export default function TranscriptionPage() {
       setIsProcessing(false);
     }
   };
-
+  const firstNote = MidiNumbers.fromNote("c3");
+  const lastNote = MidiNumbers.fromNote("f5");
+  const keyboardShortcuts = KeyboardShortcuts.create({
+    firstNote: firstNote,
+    lastNote: lastNote,
+    keyboardConfig: KeyboardShortcuts.HOME_ROW,
+  });
   return (
     <main className="min-h-screen bg-gray-100 py-8 flex items-center justify-center">
       <div className="w-1/2 mx-auto px-4">
@@ -219,6 +226,17 @@ export default function TranscriptionPage() {
             )}
           </CardContent>
         </Card>
+        <Piano
+          noteRange={{ first: firstNote, last: lastNote }}
+          playNote={() => {
+            // Play a given note - see notes below
+          }}
+          stopNote={() => {
+            // Stop playing a given note - see notes below
+          }}
+          width={1000}
+          keyboardShortcuts={keyboardShortcuts}
+        />
       </div>
     </main>
   );
