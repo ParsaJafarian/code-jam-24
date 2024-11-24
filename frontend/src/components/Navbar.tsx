@@ -13,8 +13,12 @@ export function Navbar() {
             </Link>
             <div className="flex items-center justify-end w-full">
                 <nav className="hidden md:flex gap-8">
-                    <Link className="text-sm font-medium text-white hover:text-red-200 hover:underline underline-offset-4" to="/reader">
+                    <Link 
+                        className="text-sm font-medium text-white relative group"
+                        to="/reader"
+                    >
                         Get Started
+                        <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#ffff00] transition-all group-hover:w-full"></span>
                     </Link>
                 </nav>
             </div>
