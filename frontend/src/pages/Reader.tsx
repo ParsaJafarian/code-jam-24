@@ -94,15 +94,15 @@ export default function TranscriptionPage() {
     <div>
       <Navbar />
 
-      <main className="min-h-screen bg-red-500 py-8 flex items-center justify-center">
+      <main className="min-h-screen bg-red-500 flex items-start justify-center pt-20">
         <div className="w-1/2 mx-auto px-4">
-          <Card className="shadow-lg">
-            <CardHeader className="bg-[#ffff00]">
+          <Card className="shadow-lg border-0">
+            <CardHeader className="bg-[#ffff00] rounded-t-lg">
               <CardTitle className="text-2xl text-center font-semibold">
-                🎵 Music Transcription Tool
+                Music Transcription Tool
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-4">
                   {/* Audio File Upload Section */}
@@ -122,7 +122,7 @@ export default function TranscriptionPage() {
                       onClick={() =>
                         document.getElementById("audio-file")?.click()
                       }
-                      className="w-full flex items-center justify-center gap-2"
+                      className="w-full flex items-center justify-center gap-2 border-black"
                       variant="outline"
                     >
                       <FileMusic className="w-4 h-4" />
@@ -145,7 +145,7 @@ export default function TranscriptionPage() {
                   </div>
 
                   {/* Separator */}
-                  <div className="text-center text-sm text-gray-500">OR</div>
+                  <div className="text-center text-sm text-black">OR</div>
 
                   {/* YouTube Link Section */}
                   <div>
@@ -158,12 +158,13 @@ export default function TranscriptionPage() {
                         placeholder="https://www.youtube.com/watch?v=..."
                         value={youtubeLink}
                         onChange={handleYoutubeLinkChange}
-                        className="flex-1 px-3 text-black bg-white py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex-1 px-3 text-black bg-white py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
                       <Button
                         type="button"
                         variant="outline"
                         onClick={() => setYoutubeLink("")}
+                        className="border-black hover:border-red-500 hover:bg-transparent hover:text-inherit"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
