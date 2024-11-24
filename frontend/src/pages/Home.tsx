@@ -4,6 +4,7 @@ import Loader from "../components/loader";
 import Piano from "@/models/Piano";
 import { Navbar } from "@/components/Navbar";
 import HomeText from "@/components/HomeText";
+import MusicNotes from "@/components/MusicNotes";
 
 const Home = () => {
   const [pianoScale, setPianoScale] = useState([0, 0, 0]);
@@ -56,6 +57,7 @@ const Home = () => {
             />
           </Suspense>
         </Canvas>
+        <MusicNotes />
       </section>
     </div>
   );

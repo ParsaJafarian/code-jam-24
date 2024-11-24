@@ -51,6 +51,15 @@ module.exports = {
   				'5': 'hsl(var(--chart-5))'
   			}
   		}
+  	},
+  	keyframes: {
+  		rain: {
+  			'0%': { transform: 'translateY(0)' },
+  			'100%': { transform: 'translateY(100vh)' }
+  		}
+  	},
+  	animation: {
+  		'rain': 'rain 7s linear infinite'
   	}
   },
   plugins: [require("tailwindcss-animate")],
