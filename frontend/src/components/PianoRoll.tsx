@@ -66,10 +66,10 @@ const PianoRoll: React.FC<PianoRollProps> = ({ midiData }) => {
       animationFrame = requestAnimationFrame(drawFrame);
     };
 
-    const startAnimation = () => {
-      startTime = Tone.now();
-      drawFrame(0);
-    };
+    // const startAnimation = () => {
+    //   startTime = Tone.now();
+    //   drawFrame(0);
+    // };
 
     const stopAnimation = () => {
       if (animationFrame) cancelAnimationFrame(animationFrame);
