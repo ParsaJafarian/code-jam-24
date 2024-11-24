@@ -56,10 +56,15 @@ module.exports = {
   		rain: {
   			'0%': { transform: 'translateY(0)' },
   			'100%': { transform: 'translateY(100vh)' }
+  		},
+  		spin: {
+  			'0%': { transform: 'rotate(0deg)' },
+  			'100%': { transform: 'rotate(360deg)' },
   		}
   	},
   	animation: {
-  		'rain': 'rain 7s linear infinite'
+  		'rain': 'rain 7s linear infinite',
+  		'spin': 'spin 1s linear infinite',
   	}
   },
   plugins: [require("tailwindcss-animate")],
