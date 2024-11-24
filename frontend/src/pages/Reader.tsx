@@ -149,7 +149,7 @@ export default function TranscriptionPage() {
       <Navbar />
 
       <main className="min-h-screen bg-red-500 flex items-start justify-center pt-20">
-        <div className="w-1/2 mx-auto px-4">
+        <div className="w-[40%] mx-auto px-4">
           <Card className="shadow-lg border-0">
             <CardHeader className="bg-[#ffff00] rounded-t-lg">
               <CardTitle className="text-2xl text-center font-semibold">
@@ -256,29 +256,6 @@ export default function TranscriptionPage() {
                 <Button onClick={playMidi} className="mt-4">
                   Play MIDI
                 </Button>
-              )}
-              {/* Transcription Result */}
-              {pdfUrl && (
-                <div className="mt-6 space-y-4">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold">
-                      Transcription Result
-                    </h3>
-                    <Button
-                      onClick={() => window.open(pdfUrl, "_blank")}
-                      variant="outline"
-                      className="flex items-center gap-2"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download PDF
-                    </Button>
-                  </div>
-                  <iframe
-                    src={pdfUrl}
-                    className="w-full h-[600px] border rounded-lg"
-                    title="PDF Viewer"
-                  />
-                </div>
               )}
             </CardContent>
           </Card>
