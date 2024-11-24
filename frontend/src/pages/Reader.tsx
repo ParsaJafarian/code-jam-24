@@ -24,6 +24,7 @@ export default function TranscriptionPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [midiData, setMidiData] = useState<Midi | null>(null);
+  const [activeNotes, setActiveNotes] = useState<number[]>([]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -115,12 +116,23 @@ export default function TranscriptionPage() {
 
     midiData.tracks.forEach((track) => {
       track.notes.forEach((note) => {
+        const midiNumber = Tone.Frequency(note.name).toMidi();
         synth.triggerAttackRelease(
           note.name,
           note.duration,
           note.time + now,
           note.velocity
         );
+
+        // Activate the note
+        Tone.Draw.schedule(() => {
+          setActiveNotes((prev) => [...prev, midiNumber]);
+        }, note.time + now);
+
+        // Deactivate the note
+        Tone.Draw.schedule(() => {
+          setActiveNotes((prev) => prev.filter((n) => n !== midiNumber));
+        }, note.time + note.duration + now);
       });
     });
   };
@@ -286,6 +298,7 @@ export default function TranscriptionPage() {
           }}
           width={1000}
           keyboardShortcuts={keyboardShortcuts}
+          activeNotes={activeNotes}
         />
       </main>
     </div>
