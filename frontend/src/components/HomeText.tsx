@@ -4,8 +4,8 @@ const HomeText = () => {
   return (
     <div className="absolute inset-y-0 left-0 flex flex-col justify-center text-white z-20 px-4 sm:px-8 md:px-16 max-w-full md:max-w-2xl pt-20">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-left">
-        Hear It, See It, Play It <br />
-        With <span className="text-[#ffff00]">Museify</span>
+        Hear it, See it, Play it <br />
+        with <span className="text-[#ffff00]">Museify</span>
       </h1>
       <div className="text-base sm:text-lg text-red-100 text-left mb-8 space-y-4">
         <p>
