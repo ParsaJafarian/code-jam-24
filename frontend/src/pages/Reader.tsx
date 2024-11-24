@@ -59,7 +59,7 @@ export default function Reader() {
             </div>
 
             <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold mb-6 text-center">Audio Upload</h2>
+                <h2 className="text-2xl font-bold -mx-6 -mt-6 mb-6 text-center py-4 bg-[#ffff00] rounded-t-lg">Audio Upload</h2>
                 
                 <div className="mb-6">
                     <p className="block mb-2 font-medium">Upload Audio File</p>
