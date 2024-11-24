@@ -13,6 +13,8 @@ import { Navbar } from "@/components/Navbar";
 import MusicNotes from "@/components/MusicNotes";
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import "react-piano/dist/styles.css";
+import { Midi } from "@tonejs/midi";
+import * as Tone from "tone";
 const API_URL = "http://localhost:8000";
 
 export default function TranscriptionPage() {
@@ -21,6 +23,7 @@ export default function TranscriptionPage() {
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [midiData, setMidiData] = useState<Midi | null>(null);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -82,15 +85,46 @@ export default function TranscriptionPage() {
       }
 
       // Create a blob URL from the PDF response
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      setPdfUrl(url);
+      const data = await response.json();
+      console.log(data);
+      const { pdfPath, midiPath } = data;
+      if (pdfPath) {
+        setPdfUrl(`${API_URL}\\${pdfPath}`); // Assuming API_URL is the base URL of your backend
+      } else {
+        throw new Error("File URL not returned.");
+      }
+
+      if (midiPath) {
+        const midiResponse = await fetch(`${API_URL}\\${midiPath}`);
+        const midiArrayBuffer = await midiResponse.arrayBuffer();
+        const midi = new Midi(midiArrayBuffer);
+        setMidiData(midi);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setIsProcessing(false);
     }
   };
+
+  const playMidi = () => {
+    if (!midiData) return;
+
+    const synth = new Tone.PolySynth().toDestination();
+    const now = Tone.now();
+
+    midiData.tracks.forEach((track) => {
+      track.notes.forEach((note) => {
+        synth.triggerAttackRelease(
+          note.name,
+          note.duration,
+          note.time + now,
+          note.velocity
+        );
+      });
+    });
+  };
+
   const firstNote = MidiNumbers.fromNote("c3");
   const lastNote = MidiNumbers.fromNote("f5");
   const keyboardShortcuts = KeyboardShortcuts.create({
@@ -206,7 +240,11 @@ export default function TranscriptionPage() {
                   </Button>
                 </div>
               </form>
-
+              {midiData && (
+                <Button onClick={playMidi} className="mt-4">
+                  Play MIDI
+                </Button>
+              )}
               {/* Transcription Result */}
               {pdfUrl && (
                 <div className="mt-6 space-y-4">
@@ -233,19 +271,23 @@ export default function TranscriptionPage() {
             </CardContent>
           </Card>
         </div>
-    </div>
         <Piano
           noteRange={{ first: firstNote, last: lastNote }}
-          playNote={() => {
-            // Play a given note - see notes below
+          playNote={(midiNumber: any) => {
+            // Play a single note when a key is pressed
+            const synth = new Tone.Synth().toDestination();
+            synth.triggerAttackRelease(
+              Tone.Frequency(midiNumber, "midi").toFrequency(),
+              "8n"
+            );
           }}
           stopNote={() => {
-            // Stop playing a given note - see notes below
+            // Optional: implement note stop logic if needed
           }}
           width={1000}
           keyboardShortcuts={keyboardShortcuts}
         />
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }

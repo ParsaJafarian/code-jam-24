@@ -9,6 +9,7 @@ import sys
 from typing import Union
 from yt_dlp import YoutubeDL
 from pydub import AudioSegment
+from fastapi.staticfiles import StaticFiles
 
 # Windows-specific fix for connection reset error
 if sys.platform.startswith("win"):
@@ -40,6 +41,8 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Rest of your existing code remains the same...
 
+app.mount("/outputs", StaticFiles(directory="outputs"), name="outputs")
+
 
 @app.post("/process/")
 async def process_file(
@@ -52,7 +55,7 @@ async def process_file(
     - A YouTube URL (via `youtube_url` form field)
     - An uploaded audio file (.wav or .mp3) (via `input_file` upload)
     """
-    
+
     # Step -1: Clean up files after sending response
     for filename in os.listdir(OUTPUT_DIR):
         file_path = os.path.join(OUTPUT_DIR, filename)
@@ -218,6 +221,7 @@ async def process_file(
         response = FileResponse(
             pdf_file_path, media_type="application/pdf", filename="output.pdf"
         )
+        response = {"pdfPath": pdf_file_path, "midiPath": simplified_midi_path}
 
         return response
 
