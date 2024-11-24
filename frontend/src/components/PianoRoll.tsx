@@ -42,8 +42,8 @@ const PianoRoll: React.FC<PianoRollProps> = ({ midiData }) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const elapsed = time / 1000 - startTime;
-      midi.tracks.forEach((track) => {
-        track.notes.forEach((note) => {
+      midi.tracks.forEach((track: any) => {
+        track.notes.forEach((note: any) => {
           const noteStart = note.time;
           const noteEnd = noteStart + note.duration;
           const noteKeyIndex = noteToKeyIndex(note.midi);
@@ -84,8 +84,8 @@ const PianoRoll: React.FC<PianoRollProps> = ({ midiData }) => {
     await Tone.start();
     const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 
-    midi.tracks.forEach((track) => {
-      track.notes.forEach((note) => {
+    midi.tracks.forEach((track: any) => {
+      track.notes.forEach((note: any) => {
         synth.triggerAttackRelease(
           note.name,
           note.duration,
