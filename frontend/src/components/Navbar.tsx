@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/logo4.png';
+import logo from '../assets/images/logo6.png';
 
 export function Navbar() {
     return (
@@ -8,7 +8,7 @@ export function Navbar() {
                 <img
                     src={logo}
                     alt="Museify Logo"
-                    className="sm:h-16 lg:h-20 h-30" // Adjust logo size for different screens
+                    className="h-16"
                 />
             </Link>
             <div className="flex items-center justify-end w-full">
