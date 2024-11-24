@@ -14,7 +14,7 @@ const HomeText = () => {
       </div>
       <div className="flex gap-2 sm:gap-4">
         <Link to="/reader">
-          <button className="bg-[#ffff00] hover:bg-[#cccc00] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-colors">
+          <button className="bg-[#ffff00] text-black px-6 py-3 rounded-full font-semibold transition-all duration-300 border-2 border-transparent hover:border-[#ffff00] hover:bg-transparent hover:text-[#ffff00]">
             Get Started
           </button>
         </Link>
