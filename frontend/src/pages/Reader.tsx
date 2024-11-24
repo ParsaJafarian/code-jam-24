@@ -96,8 +96,8 @@ export default function TranscriptionPage() {
 
       <main className="min-h-screen bg-red-500 py-8 flex items-center justify-center">
         <div className="w-1/2 mx-auto px-4">
-          <Card className="shadow-lg border border-gray-200">
-            <CardHeader className="bg-gray-100">
+          <Card className="shadow-lg">
+            <CardHeader className="bg-[#ffff00]">
               <CardTitle className="text-2xl text-center font-semibold">
                 🎵 Music Transcription Tool
               </CardTitle>
