@@ -9,6 +9,8 @@ import {
   Trash2,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Navbar } from "@/components/Navbar";
+import MusicNotes from "@/components/MusicNotes";
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import "react-piano/dist/styles.css";
 const API_URL = "http://localhost:8000";
@@ -97,135 +99,141 @@ export default function TranscriptionPage() {
     keyboardConfig: KeyboardShortcuts.HOME_ROW,
   });
   return (
-    <main className="min-h-screen bg-gray-100 py-8 flex items-center justify-center">
-      <div className="w-1/2 mx-auto px-4">
-        <Card className="shadow-lg border border-gray-200">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center font-semibold">
-              🎵 Music Transcription Tool
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
-                {/* Audio File Upload Section */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Upload Audio File
-                  </label>
-                  <input
-                    id="audio-file"
-                    type="file"
-                    accept="audio/*"
-                    onChange={handleFileChange}
-                    className="hidden"
-                  />
-                  <Button
-                    type="button"
-                    onClick={() =>
-                      document.getElementById("audio-file")?.click()
-                    }
-                    className="w-full flex items-center justify-center gap-2"
-                    variant="outline"
-                  >
-                    <FileMusic className="w-4 h-4" />
-                    Select Audio File
-                  </Button>
-                  {audioFile && (
-                    <div className="mt-2 flex items-center justify-between">
-                      <p className="text-sm text-green-600">
-                        Selected: {audioFile.name}
-                      </p>
+    <div className="w-full h-screen relative">
+      <Navbar />
+
+      <main className="min-h-screen bg-red-500 flex items-start justify-center pt-20">
+        <div className="w-1/2 mx-auto px-4">
+          <Card className="shadow-lg border-0">
+            <CardHeader className="bg-[#ffff00] rounded-t-lg">
+              <CardTitle className="text-2xl text-center font-semibold">
+                Music Transcription Tool
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-4">
+                  {/* Audio File Upload Section */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Upload Audio File
+                    </label>
+                    <input
+                      id="audio-file"
+                      type="file"
+                      accept="audio/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
+                    <Button
+                      type="button"
+                      onClick={() =>
+                        document.getElementById("audio-file")?.click()
+                      }
+                      className="w-full flex items-center justify-center gap-2 border-black"
+                      variant="outline"
+                    >
+                      <FileMusic className="w-4 h-4" />
+                      Select Audio File
+                    </Button>
+                    {audioFile && (
+                      <div className="mt-2 flex items-center justify-between">
+                        <p className="text-sm text-green-600">
+                          Selected: {audioFile.name}
+                        </p>
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          onClick={handleRemoveFile}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Separator */}
+                  <div className="text-center text-sm text-black">OR</div>
+
+                  {/* YouTube Link Section */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Enter YouTube Link
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="https://www.youtube.com/watch?v=..."
+                        value={youtubeLink}
+                        onChange={handleYoutubeLinkChange}
+                        className="flex-1 px-3 text-black bg-white py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
                       <Button
                         type="button"
-                        variant="destructive"
-                        onClick={handleRemoveFile}
+                        variant="outline"
+                        onClick={() => setYoutubeLink("")}
+                        className="border-black hover:border-red-500 hover:bg-transparent hover:text-inherit"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
-                  )}
-                </div>
-
-                {/* Separator */}
-                <div className="text-center text-sm text-gray-500">OR</div>
-
-                {/* YouTube Link Section */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Enter YouTube Link
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="https://www.youtube.com/watch?v=..."
-                      value={youtubeLink}
-                      onChange={handleYoutubeLinkChange}
-                      className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setYoutubeLink("")}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
                   </div>
-                </div>
 
-                {/* Error Alert */}
-                {error && (
-                  <Alert variant="destructive" className="mt-4">
-                    <AlertCircle className="h-4 w-4" />
-                    <AlertDescription>{error}</AlertDescription>
-                  </Alert>
-                )}
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={
-                    isProcessing || (!audioFile && !youtubeLink) || !!error
-                  }
-                >
-                  {isProcessing ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Processing...
-                    </>
-                  ) : (
-                    "Transcribe Music"
+                  {/* Error Alert */}
+                  {error && (
+                    <Alert variant="destructive" className="mt-4">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription>{error}</AlertDescription>
+                    </Alert>
                   )}
-                </Button>
-              </div>
-            </form>
 
-            {/* Transcription Result */}
-            {pdfUrl && (
-              <div className="mt-6 space-y-4">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">
-                    Transcription Result
-                  </h3>
+                  {/* Submit Button */}
                   <Button
-                    onClick={() => window.open(pdfUrl, "_blank")}
-                    variant="outline"
-                    className="flex items-center gap-2"
+                    type="submit"
+                    className="w-full"
+                    disabled={
+                      isProcessing || (!audioFile && !youtubeLink) || !!error
+                    }
                   >
-                    <Download className="w-4 h-4" />
-                    Download PDF
+                    {isProcessing ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Processing...
+                      </>
+                    ) : (
+                      "Transcribe Music"
+                    )}
                   </Button>
                 </div>
-                <iframe
-                  src={pdfUrl}
-                  className="w-full h-[600px] border rounded-lg"
-                  title="PDF Viewer"
-                />
-              </div>
-            )}
-          </CardContent>
-        </Card>
+              </form>
+
+              {/* Transcription Result */}
+              {pdfUrl && (
+                <div className="mt-6 space-y-4">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold">
+                      Transcription Result
+                    </h3>
+                    <Button
+                      onClick={() => window.open(pdfUrl, "_blank")}
+                      variant="outline"
+                      className="flex items-center gap-2"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download PDF
+                    </Button>
+                  </div>
+                  <iframe
+                    src={pdfUrl}
+                    className="w-full h-[600px] border rounded-lg"
+                    title="PDF Viewer"
+                  />
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+    </div>
         <Piano
           noteRange={{ first: firstNote, last: lastNote }}
           playNote={() => {

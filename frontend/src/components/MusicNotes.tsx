@@ -1,12 +1,12 @@
 import { Music } from 'lucide-react'
 
 export default function MusicNotes() {
-    const numNotes = 12;
+    const numNotes = 24;
     
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
             {[...Array(numNotes)].map((_, i) => {
-                const horizontalOffset = Math.random() * 100; // Random horizontal position
+                const horizontalOffset = Math.random() * 100;
                 
                 return (
                     <Music
@@ -14,9 +14,9 @@ export default function MusicNotes() {
                         className="absolute text-black opacity-30 animate-rain"
                         style={{
                             left: `${horizontalOffset}%`,
-                            top: '-20px', // Start above the screen
+                            top: '-20px',
                             fontSize: '24px',
-                            animationDelay: `${i * 1.5}s`, // Increased delay between notes from 0.5s to 1.5s
+                            animationDelay: `${i * 0.75}s`,
                         }}
                     />
                 )
