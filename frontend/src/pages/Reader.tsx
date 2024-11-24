@@ -23,21 +23,6 @@ export default function Reader() {
                 <h1 className="text-3xl font-bold text-center py-4 bg-[#ffff00] text-black">
                     Musical PDF Viewer
                 </h1>
-                <div className="p-4">
-                    <label
-                        htmlFor="pdf-upload"
-                        className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-                    >
-                        Upload PDF
-                    </label>
-                    <input
-                        id="pdf-upload"
-                        type="file"
-                        accept="application/pdf"
-                        className="hidden"
-                        onChange={handleFileUpload}
-                    />
-                </div>
                 {pdfFile ? (
                     <PDFViewer pdfUrl={pdfFile} />
                 ) : (
